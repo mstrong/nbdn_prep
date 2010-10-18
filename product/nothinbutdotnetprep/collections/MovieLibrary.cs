@@ -19,7 +19,16 @@ namespace nothinbutdotnetprep.collections
 
         public void add(Movie movie)
         {
-            throw new NotImplementedException();
+            bool exists = false;
+
+            foreach (Movie m in movies)
+            {
+                if (m.title == movie.title)
+                    exists = true;
+            }
+
+            if (!movies.Contains(movie) && !exists )
+                movies.Add(movie);
         }
 
         public IEnumerable<Movie> sort_all_movies_by_title_descending
@@ -29,7 +38,17 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies_published_by_pixar()
         {
-            throw new NotImplementedException();
+            IList<Movie> pixarMovies = new List<Movie>();
+
+            foreach (Movie m in movies)
+            {
+                if (m.production_studio == ProductionStudio.Pixar)
+                {
+                    pixarMovies.Add(m);
+                }
+            }
+
+            return pixarMovies;
         }
 
         public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
